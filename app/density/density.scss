@@ -1,9 +1,17 @@
+$mdc-theme-primary: #1a73e8;
+$mdc-theme-secondary: #1a73e8;
+
 @import "@material/button/mdc-button";
 @import "@material/icon-button/mdc-icon-button";
 @import "@material/chips/mdc-chips";
+@import "@material/checkbox/mdc-checkbox";
+@import "@material/textfield/mdc-text-field";
 @import "@material/button/mixins";
 @import "@material/icon-button/mixins";
 @import "@material/chips/mixins";
+@import "@material/textfield/mixins";
+@import "@material/checkbox/mixins";
+
 @import "../common/toggle-button/toggle-button";
 @import "../common/section-title/section-title";
 @import "../common/logo/logo";
@@ -80,5 +88,103 @@
 
   &.dense-default {
     @include mdc-chip-density(0);
+  }
+}
+
+//
+// Text Field
+//
+.mdc-text-field--default {
+  &.dense-compact {
+    @include mdc-text-field-density(-4);
+
+    &.is-rounded {
+      @include mdc-text-field-shape-radius(50%, $text-field-height: 40px);
+    }
+  }
+
+  &.dense-comfortable {
+    @include mdc-text-field-density(-2);
+
+    &.is-rounded {
+      @include mdc-text-field-shape-radius(50%, $text-field-height: 48px);
+    }
+  }
+
+  &.dense-default {
+    @include mdc-text-field-density(0);
+
+    &.is-rounded {
+      @include mdc-text-field-shape-radius(50%);
+    }
+  }
+}
+
+.mdc-text-field--outlined {
+  &.dense-compact {
+    @include mdc-text-field-outlined-density(-4);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 40px);
+    }
+  }
+
+  &.dense-comfortable {
+    @include mdc-text-field-outlined-density(-2);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 48px);
+    }
+  }
+
+  &.dense-default {
+    @include mdc-text-field-outlined-density(0);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%);
+    }
+  }
+}
+
+.mdc-text-field--with-leading-icon {
+  &.dense-compact {
+    @include mdc-text-field-outlined-with-leading-icon-density(-4);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 40px);
+    }
+  }
+
+  &.dense-comfortable {
+    @include mdc-text-field-outlined-with-leading-icon-density(-2);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 48px);
+    }
+  }
+
+  &.dense-default {
+    @include mdc-text-field-outlined-with-leading-icon-density(0);
+
+    &.is-rounded {
+      @include mdc-text-field-outline-shape-radius(50%);
+    }
+  }
+}
+
+//
+// Checkbox
+//
+.mdc-checkbox {
+  &.dense-compact {
+    @include mdc-checkbox-density(-3);
+  }
+
+  &.dense-comfortable {
+    @include mdc-checkbox-density(-1);
+  }
+
+  &.dense-default {
+    @include mdc-checkbox-density(0);
   }
 }

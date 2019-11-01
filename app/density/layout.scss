@@ -1,3 +1,5 @@
+@import "@material/typography/mixins";
+
 body {
   font-family: Roboto,sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -72,19 +74,28 @@ q:before, q:after {
 }
 
 .component {
-  margin-bottom: 24px;
+  margin-bottom: 4px;
   margin-right: 24px;
 }
 
-.mdc-text-field {
+.components {
+  max-width: 440px;
+}
+
+.mdc-text-field-container {
   width: 360px;
   margin-bottom: 24px;
   display: inline-block;
 }
 
-.mdc-chip,
-.mdc-checkbox {
-  margin-right: 8px;
+/// TODO: figure out why notched outline is misplaced.
+.mdc-notched-outline {
+  top: 0;
+}
+
+.mdc-text-field {
+  width: 100%;
+  max-width: 360px;
 }
 
 .control-label {
@@ -123,4 +134,27 @@ q:before, q:after {
 
 .mdc-divider {
   border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.mdc-checkbox-label {
+  @include mdc-typography(body2);
+
+  padding-left: 4px;
+}
+
+.mdc-checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.mdc-button {
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .0107142857em;
+  text-transform: none;
+}
+
+.mdc-button--outlined {
+  @include mdc-button-outline-color(rgb(218, 220, 224));
 }

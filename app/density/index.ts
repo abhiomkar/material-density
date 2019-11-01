@@ -1,8 +1,11 @@
 import { html, render } from 'lit-html';
+import { MDCTextField } from '@material/textfield';
 import { toggleButton, toggleButtonOption } from '../common/toggle-button';
 import { button } from '../../components/button';
 import { iconButton } from '../../components/icon-button';
 import { chip } from '../../components/chip';
+import { checkbox } from '../../components/checkbox';
+import { textField } from '../../components/text-field';
 import { logo } from '../common/logo';
 import {Store} from './store';
 import './density.scss';
@@ -30,8 +33,12 @@ export const app = (store: Partial<AppStore> = {}) => {
   <div class="component-columns">
     <section class="components">
       ${buttonSection(store)}
-      ${iconButtonSection(store)}
       ${chipSection(store)}
+      ${iconButtonSection(store)}
+      ${checkboxSection(store)}
+    </section>
+    <section class="components">
+      ${textFieldSection(store)}
     </section>
   </div>
   `;
@@ -51,12 +58,7 @@ const buttonSection = (store: Partial<AppStore> = {}) => {
     <section class="component">
       <div class="section-title">Button</div>
       <div class="row row-flex">
-        ${button({ label: 'Button', raised: true, classes })}
-        ${button({ label: 'Button', classes })}
-        ${button({ label: 'Button', outlined: true, classes })}
-      </div>
-      <div class="row row-flex">
-        ${button({ label: 'Button', iconName: 'add', raised: true, classes })}
+        ${button({ label: 'Button', iconName: 'add', unelevated: true, classes })}
         ${button({ label: 'Button', iconName: 'add', classes })}
         ${button({ label: 'Button', iconName: 'add', outlined: true, classes })}
       </div>
@@ -103,6 +105,49 @@ const chipSection = (store: Partial<AppStore> = {}) => {
           ${chip({label: 'Set alarm', iconName: 'alarm', classes})}
           ${chip({label: 'Play music', iconName: 'music_note', classes})}
         </div>
+      </div>
+    </section>`;
+};
+
+const textFieldSection = (store: Partial<AppStore> = {}) => {
+  const { densityScale, shape } = store;
+
+  const classes = {
+    'dense-default': densityScale === 'default',
+    'dense-comfortable': densityScale === 'comfortable',
+    'dense-compact': densityScale === 'compact',
+    'is-rounded': shape === 'rounded',
+  };
+
+  return html`
+    <section class="component">
+      <div class="section-title">Text Field</div>
+      <div class="row">
+        ${textField({label: 'Label', helperText: 'Assistive text', value: 'Pre-filled', outlined: true, leadingIconName: 'search', classes})}
+        ${textField({label: 'Label', helperText: 'Assistive text', value: 'Pre-filled', characterLimit: 18, leadingIconName: 'search',  trailingIconName: 'visibility', outlined: true, classes})}
+        ${textField({label: 'Label', helperText: 'Assistive text', outlined: true, leadingIconName: 'search', classes})}
+        ${textField({label: 'Label', helperText: 'Assistive text', value: 'Pre-filled', characterLimit: 18, leadingIconName: 'favorite', classes})}
+        ${textField({label: 'Label', helperText: 'Assistive text', leadingIconName: 'search', characterLimit: 18, classes})}
+      </div>
+    </section>`;
+};
+
+const checkboxSection = (store: Partial<AppStore> = {}) => {
+  const { densityScale } = store;
+
+  const classes = {
+    'dense-default': densityScale === 'default',
+    'dense-comfortable': densityScale === 'comfortable',
+    'dense-compact': densityScale === 'compact',
+  };
+
+  return html`
+    <section class="component">
+      <div class="section-title">Checkbox</div>
+      <div class="row">
+        ${checkbox({label: 'Pickles', classes})}
+        ${checkbox({label: 'Tomato', checked: true, classes})}
+        ${checkbox({label: 'Lettuce', checked: true, classes})}
       </div>
     </section>`;
 };
@@ -264,3 +309,10 @@ rerender(store.get());
 //     }
 //   });
 // });
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('loaded');
+  for (const el of document.querySelectorAll('.mdc-text-field')) {
+    MDCTextField.attachTo(el);
+  }
+});
