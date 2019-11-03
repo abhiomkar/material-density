@@ -146,15 +146,3 @@ q:before, q:after {
   display: flex;
   align-items: center;
 }
-
-.mdc-button {
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
-  font-size: .875rem;
-  font-weight: 500;
-  letter-spacing: .0107142857em;
-  text-transform: none;
-}
-
-.mdc-button--outlined {
-  @include mdc-button-outline-color(rgb(218, 220, 224));
-}
