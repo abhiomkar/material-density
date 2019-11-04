@@ -31,9 +31,9 @@ const input = ({ labelId, ariaLabel, placeholder, value, characterLimit }: Parti
     type="text"
     class="mdc-text-field__input"
     id=${labelId}
-    aria-label=${ariaLabel}
+    aria-label=${ariaLabel || null}
     placeholder=${placeholder || ''}
-    maxlength=${characterLimit}
+    maxlength=${characterLimit || ''}
     value=${value || ''}
     />`;
 };

@@ -96,7 +96,7 @@
     @include mdc-text-field-density(-4);
 
     &.is-rounded {
-      @include mdc-text-field-shape-radius(50%, $text-field-height: 40px);
+      @include mdc-text-field-shape-radius(50%, $density-scale: -4);
     }
   }
 
@@ -104,7 +104,7 @@
     @include mdc-text-field-density(-2);
 
     &.is-rounded {
-      @include mdc-text-field-shape-radius(50%, $text-field-height: 48px);
+      @include mdc-text-field-shape-radius(50%, $density-scale: -2);
     }
   }
 
@@ -122,7 +122,7 @@
     @include mdc-text-field-outlined-density(-4);
 
     &.is-rounded {
-      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 40px);
+      @include mdc-text-field-outline-shape-radius(50%, $density-scale: -4);
     }
   }
 
@@ -130,12 +130,12 @@
     @include mdc-text-field-outlined-density(-2);
 
     &.is-rounded {
-      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 48px);
+      @include mdc-text-field-outline-shape-radius(50%, $density-scale: -2);
     }
   }
 
   &.dense-default {
-    @include mdc-text-field-outlined-density(0);
+    // @include mdc-text-field-outlined-density(0);
 
     &.is-rounded {
       @include mdc-text-field-outline-shape-radius(50%);
@@ -148,7 +148,7 @@
     @include mdc-text-field-outlined-with-leading-icon-density(-4);
 
     &.is-rounded {
-      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 40px);
+      @include mdc-text-field-outline-shape-radius(50%, $density-scale: -4);
     }
   }
 
@@ -156,7 +156,7 @@
     @include mdc-text-field-outlined-with-leading-icon-density(-2);
 
     &.is-rounded {
-      @include mdc-text-field-outline-shape-radius(50%, $text-field-height: 48px);
+      @include mdc-text-field-outline-shape-radius(50%, $density-scale: -2);
     }
   }
 
@@ -167,6 +167,11 @@
       @include mdc-text-field-outline-shape-radius(50%);
     }
   }
+}
+
+.mdc-text-field--with-leading-icon .mdc-text-field__input {
+  padding-left: 48px !important;
+  padding-right: 16px !important;
 }
 
 //
