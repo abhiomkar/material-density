@@ -1,6 +1,6 @@
-# MDC Web + Lit Element + Sass
+# Material Density demo page
 
-MDC Web Native Web Components generated with Lit Element themed with Sass
+MDC Web density demo page is built with lit-html and themed with Sass.
 
 ### Run locally
 
