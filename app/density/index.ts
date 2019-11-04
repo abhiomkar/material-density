@@ -1,5 +1,5 @@
-import { html, render } from 'lit-html';
-import { MDCTextField } from '@material/textfield';
+import { html } from 'lit-html';
+import { render } from '../../components/common/render';
 import { toggleButton, toggleButtonOption } from '../common/toggle-button';
 import { button } from '../../components/button';
 import { iconButton } from '../../components/icon-button';
@@ -21,9 +21,18 @@ const store = new Store({
 });
 
 export const app = (store: Partial<AppStore> = {}) => {
+  const title = 'Material Density';
+  const subtitle = html`
+  <div>
+    Material Design uses low-density space by default (with large tap targets and margins)
+    but offers high-density space when it improves the user experience.<br>
+    (See <a href="https://material.io/design/layout/applying-density.html">Design guidelines</a>
+    & <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-density">sample usage</a> on GitHub)
+  </div>`;
+
   return html`
   <div class="mdc-theme-control">
-    ${logo({ title: 'Density Demo' })}
+    ${logo({ title: 'Material Density', subtitle })}
     <div class="control-row">
       ${densityScaleControls(store.densityScale)}
       ${shapeControls(store.shape)}
@@ -210,109 +219,3 @@ const rerender = (store: Partial<AppStore> = {}) => {
 }
 
 rerender(store.get());
-
-// 'is-rounded': this.rounded === true,
-// 'dense--3': this.density === '-3',
-// 'dense--2': this.density === '-2',
-// 'dense--1': this.density === '-1',
-// 'dense--0': this.density === '-0',
-// 'dense-default': this.density === 'default',
-// 'dense-comfortable': this.density === 'comfortable',
-// 'dense-compact': this.density === 'compact',
-
-// export const densityApp = () => {
-//   return html`${themeControl()}
-
-// <div class="component-columns">
-//   <section class="components">
-//     <!-- Button -->
-//     <section class="component">
-//       <section-title>Button</section-title>
-//       <div class="row row-flex">
-//         <mdc-button raised>Button</mdc-button>
-//         <mdc-button>Button</mdc-button>
-//         <mdc-button outlined>Button</mdc-button>
-//       </div>
-//       <div class="row row-flex">
-//         <mdc-button icon="add" raised>Button</mdc-button>
-//         <mdc-button icon="add">Button</mdc-button>
-//         <mdc-button icon="add" outlined>Button</mdc-button>
-//       </div>
-//     </section>
-
-//     <!-- Icon Button -->
-//     <section class="component">
-//       <section-title>Icon Button</section-title>
-//       <div class="row">
-//         <mdc-icon-button icon="favorite"></mdc-icon-button>
-//         <mdc-icon-button icon="add"></mdc-icon-button>
-//         <mdc-icon-button icon="mic_none"></mdc-icon-button>
-//       </div>
-//     </section>
-
-//     <!-- Chips -->
-//     <section class="component">
-//       <section-title>Chips</section-title>
-//       <div class="row align-center">
-//         <mdc-chip>Body 2</mdc-chip>
-//         <mdc-chip icon="check">Body 2</mdc-chip>
-//         <mdc-chip icon="check">Body 2</mdc-chip>
-//       </div>
-//     </section>
-
-//     <!-- Checkbox -->
-//     <section class="component">
-//       <section-title>Checkbox</section-title>
-//       <div class="row">
-//         <mdc-checkbox></mdc-checkbox>
-//         <mdc-checkbox checked></mdc-checkbox>
-//         <mdc-checkbox indeterminate></mdc-checkbox>
-//       </div>
-//     </section>
-//   </section>
-
-//   <section class="components">
-//     <!-- Text Field -->
-//     <section class="component">
-//       <section-title>Text Field</section-title>
-//       <div class="row">
-//         <mdc-text-field label="Label" helperText="Assistive text" trailingIcon="remove_red_eye" outlined></mdc-text-field>
-//         <mdc-text-field label="Label" helperText="Assistive text" outlined></mdc-text-field>
-//         <mdc-text-field label="Standard" value="Pre-filled" helperText="Assistive text" outlined></mdc-text-field>
-//         <mdc-text-field label="Label" helperText="Assistive text"></mdc-text-field>
-//         <mdc-text-field label="Label" value="Pre-filled" helperText="Assistive text"></mdc-text-field>
-//       </div>
-//     </section>
-//   </section>
-// </div>`;
-// };
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   document.body.addEventListener('changed', (event) => {
-//     const controlClassName = (event.composedPath()[0] as HTMLElement).classList.value;
-
-//     const COMPONENT_SELECTOR = 'mdc-button, mdc-icon-button, mdc-chip, mdc-text-field, mdc-checkbox';
-//     const DENSITY_SCALE_CONTROL_CLASS = 'density-scale-toggle-button';
-//     const SHAPE_CONTROL_CLASS = 'rounded-shape-toggle-button';
-//     if (controlClassName === DENSITY_SCALE_CONTROL_CLASS) {
-//       const density = event.detail.selected;
-//       for (const component of document.querySelectorAll(COMPONENT_SELECTOR)) {
-//         component.density = density;
-//         component.layout && component.layout();
-//       }
-//     } else if (controlClassName === SHAPE_CONTROL_CLASS) {
-//       const isRounded = event.detail.selected === 'rounded';
-
-//       for (const component of document.querySelectorAll(COMPONENT_SELECTOR)) {
-//         component.rounded = isRounded;
-//       }
-//     }
-//   });
-// });
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('loaded');
-  for (const el of document.querySelectorAll('.mdc-text-field')) {
-    MDCTextField.attachTo(el);
-  }
-});

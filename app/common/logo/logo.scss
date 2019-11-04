@@ -1,6 +1,17 @@
-.logo {
+@import "@material/typography/mixins";
+
+.logo-title-container {
   display: inline-flex;
   align-items: center;
+}
+
+.logo-subtitle {
+  @include mdc-typography(caption);
+
+  margin: 12px 0 8px 0;
+  color: rgba(0, 0, 0, .8);
+  font-size: 0.85rem;
+  max-width: 560px;
 }
 
 .logo-title {
@@ -10,4 +21,9 @@
   font-style: italic;
   font-weight: 800;
   font-size: 1.2rem;
+}
+
+.logo-root {
+  display: flex;
+  flex-direction: column;
 }

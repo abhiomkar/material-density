@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map';
-import { getId } from '../../lib/util';
+import { getId } from '../common/util';
 
 interface CheckboxOptions {
   label: string,

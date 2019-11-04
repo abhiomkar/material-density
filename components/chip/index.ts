@@ -14,6 +14,7 @@ export const chip = ({ iconName, label, classes }: Partial<ChipOptions> = {}) =>
 
   return html`
     <div class=${rootClasses} role="row">
+    <div class="mdc-chip__ripple"></div>
     <span class="material-icons mdc-chip__icon mdc-chip__icon--leading">${iconName}</span>
       <span role="gridcell">
         <span role="button" class="mdc-chip__text">${label}</span>

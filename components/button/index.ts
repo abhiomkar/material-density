@@ -1,5 +1,7 @@
-import { html } from 'lit-html';
+import { html, directive } from 'lit-html';
+import {MDCRipple} from '@material/ripple';
 import { classMap } from 'lit-html/directives/class-map';
+import { registerConnectedCallback } from '../common/render';
 
 interface ButtonOptions {
   classes: Object,
@@ -38,6 +40,10 @@ export const icon = ({classes, iconName}: Partial<IconOptions> = {}) => {
   `;
 }
 
+const initRipple = directive(() => (part) => {
+  registerConnectedCallback(() => MDCRipple.attachTo(part.committer.element));
+});
+
 export const button = ({classes, label, iconName, trailingIconName, raised, unelevated, outlined, onClick}: Partial<ButtonOptions> = {}) => {
   const rootClasses = classMap(Object.assign({
     'mdc-button': true,
@@ -47,7 +53,7 @@ export const button = ({classes, label, iconName, trailingIconName, raised, unel
   }, classes));
 
   return html`
-    <button @click=${onClick} class=${rootClasses}>
+    <button @click=${onClick} class=${rootClasses} .onRender=${initRipple()}>
       <div class="mdc-button__ripple"></div>
       ${icon({iconName})}
       <span class="mdc-button__label">${label}</span>

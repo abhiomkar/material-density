@@ -1,8 +1,11 @@
-import { html } from 'lit-html';
+import { html, directive } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map';
-import { getId } from '../../lib/util';
+import { MDCTextField } from '@material/textfield';
+import { getId } from '../common/util';
+import { registerConnectedCallback } from '../common/render';
 
 interface TextFieldOptions {
+  id: string,
   label: string,
   placeholder: string,
   classes: Object,
@@ -35,6 +38,10 @@ const input = ({ labelId, ariaLabel, placeholder, value, characterLimit }: Parti
     />`;
 };
 
+const initTextField = directive(() => (part) => {
+  registerConnectedCallback(() => MDCTextField.attachTo(part.committer.element));
+});
+
 export const textField = ({ classes, outlined, leadingIconName, trailingIconName, ariaLabel, placeholder, helperText, label, value, characterLimit }: Partial<TextFieldOptions> = {}) => {
   const rootClasses = classMap(Object.assign({}, {
     'mdc-text-field': true,
@@ -56,7 +63,7 @@ export const textField = ({ classes, outlined, leadingIconName, trailingIconName
   if (outlined) {
     return html`
     <div class="mdc-text-field-container">
-      <div class=${rootClasses}>
+      <div class=${rootClasses} .onRender=${initTextField()}>
         ${icon({ iconName: leadingIconName })}
         ${input({ labelId, ariaLabel, placeholder, value, characterLimit })}
         ${icon({ iconName: trailingIconName })}
@@ -73,7 +80,7 @@ export const textField = ({ classes, outlined, leadingIconName, trailingIconName
   } else {
     return html`
     <div class="mdc-text-field-container">
-      <div class=${rootClasses}>
+      <div class=${rootClasses} .onRender=${initTextField()}>
         ${icon({ iconName: leadingIconName })}
         ${input({ labelId, ariaLabel, placeholder, value, characterLimit })}
         <label class=${floatingLabelClasses} for=${labelId}>${label}</label>
@@ -87,14 +94,20 @@ export const textField = ({ classes, outlined, leadingIconName, trailingIconName
 
 interface IconOptions {
   iconName: string,
+  isButton: boolean,
 }
 
-const icon = ({ iconName }: Partial<IconOptions> = {}) => {
+const icon = ({ iconName, isButton }: Partial<IconOptions> = {}) => {
   if (!iconName) {
     return null;
   }
 
-  return html`<span class="material-icons mdc-text-field__icon" tabindex="0" role="button">${iconName}</span>`;
+  return html`<span
+    class="material-icons mdc-text-field__icon"
+    tabindex=${isButton ? 0 : null}
+    role=${isButton ? 'button' : null}>
+      ${iconName}
+    </span>`;
 };
 
 interface HelperLineOptions {
