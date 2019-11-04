@@ -4,20 +4,14 @@
   "private": true,
   "main": "index.html",
   "scripts": {
-    "start": "rollup -c -w",
-    "build": "rollup -c"
+    "start": "parcel index.html"
   },
   "dependencies": {
-    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.2",
     "material-components-web": "^4.0.0",
-    "rollup": "^1.16.2"
+    "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
-    "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-node-resolve": "^5.1.0",
-    "rollup-plugin-sass": "^1.2.2",
-    "rollup-plugin-serve": "^1.0.1",
-    "rollup-plugin-typescript": "^1.0.1",
     "sass": "^1.21.0",
     "tslib": "^1.10.0",
     "typescript": "^3.5.2"
