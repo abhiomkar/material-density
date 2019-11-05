@@ -8,19 +8,17 @@
 .logo-subtitle {
   @include mdc-typography(caption);
 
-  margin: 12px 0 8px 0;
-  color: rgba(0, 0, 0, .8);
+  margin: 16px 0 16px 0;
+  line-height: 1.6;
+  color: rgba(black, 0.54);
   font-size: 0.85rem;
-  max-width: 560px;
-  max-width: 500px;
-  font-style: italic;
+  max-width: 520px;
 }
 
 .logo-title {
   margin-left: 12px;
   color: #424242;
   font-family: 'Roboto', sans-serif;
-  font-style: italic;
   font-weight: 800;
   font-size: 1.2rem;
 }

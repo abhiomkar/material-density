@@ -1,36 +1,58 @@
 @import "@material/theme/variables";
+@import "@material/ripple/mdc-ripple";
+@import "@material/theme/mixins";
+@import "@material/typography/mixins";
 
 .mdc-toggle-button {
-  border: 1px solid #dadce0;
-  color: #5f6368;
   cursor: pointer;
-  border-radius: 4px;
   display: inline-flex;
   overflow: hidden;
 }
 
 .mdc-toggle-button-option {
+  @include mdc-ripple-surface;
+  @include mdc-ripple-radius-bounded;
+  @include mdc-states(primary);
+  @include mdc-theme-prop('background-color', surface);
+  @include mdc-typography(button);
+
+  position: relative;
   padding-left: 16px;
   padding-right: 16px;
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
   height: 32px;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   outline: none;
+  overflow: hidden;
+  text-transform: uppercase;
+  border-color: rgba(mdc-theme-prop-value(on-surface), .12);
+  color: rgba(mdc-theme-prop-value(on-surface), .60);
+  border-style: solid;
 
-  &:focus {
-    background-color: rgba($mdc-theme-primary, 0.1);
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+
+  &:first-child {
+    border-radius: 4px 0 0 4px;
   }
 
-  &:active {
-    background-color: transparent;
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+    border-right-width: 1px;
   }
+}
 
-  &.is-selected {
-    background-color: $mdc-theme-primary;
-    color: $mdc-theme-on-primary;
-  }
+.mdc-toggle-button-option--selected {
+  @include mdc-theme-prop('color', primary);
+  @include mdc-theme-prop('border-color', primary);
+
+  border-width: 1px;
+  background-color: rgba(mdc-theme-prop-value(primary), .08);
+  border-right-width: 1px;
+}
+
+.mdc-toggle-button-option--selected + .mdc-toggle-button-option {
+  border-left-width: 0;
 }
